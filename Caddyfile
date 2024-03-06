@@ -23,10 +23,13 @@
 	# proxy all requests for /* to the frontend, configure this variable in the service settings
 	reverse_proxy {$FRONTEND_HOST} {$FRONTEND_PUBLIC_HOST} {
 		lb_policy first
-		lb_try_duration 1s
+		lb_try_duration 5s
 		fail_duration 5s
 		transport http {
 			dial_timeout 5s
+		}
+		lb_retry_match {
+			method "GET"
 		}
 	}
 
@@ -38,10 +41,13 @@
 		# proxy all requests for /api/* to the backend, configure this variable in the service settings
 		reverse_proxy {$BACKEND_HOST} {$BACKEND_PUBLIC_HOST} {
 			lb_policy first
-			lb_try_duration 1s
+			lb_try_duration 5s
 			fail_duration 5s
 			transport http {
 				dial_timeout 5s
+			}
+			lb_retry_match {
+				method "GET"
 			}
 		}
 	}
@@ -53,10 +59,13 @@
 		rewrite * /console/api{uri}		
 		reverse_proxy {$BACKEND_HOST} {$BACKEND_PUBLIC_HOST} {
 			lb_policy first
-			lb_try_duration 1s
+			lb_try_duration 5s
 			fail_duration 5s
 			transport http {
 				dial_timeout 5s
+			}
+			lb_retry_match {
+				method "GET"
 			}
 		}
 	}	

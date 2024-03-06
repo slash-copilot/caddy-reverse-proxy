@@ -44,6 +44,9 @@
 			transport http {
 				dial_timeout 15s
 			}
+
+			health_path /health
+    			health_interval 10s
 			
 		}
 	}
@@ -60,7 +63,9 @@
 			transport http {
 				dial_timeout 15s
 			}
-			
+
+			health_path /health
+    			health_interval 10s
 		}
 	}	
 }

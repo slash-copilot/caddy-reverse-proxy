@@ -26,7 +26,7 @@
 		lb_try_duration 1s
 		fail_duration 5s
 		transport http {
-			dial_timeout 500ms
+			dial_timeout 5s
 		}
 	}
 
@@ -41,7 +41,7 @@
 			lb_try_duration 1s
 			fail_duration 5s
 			transport http {
-				dial_timeout 500ms
+				dial_timeout 5s
 			}
 		}
 	}
@@ -56,7 +56,7 @@
 			lb_try_duration 1s
 			fail_duration 5s
 			transport http {
-				dial_timeout 500ms
+				dial_timeout 5s
 			}
 		}
 	}	

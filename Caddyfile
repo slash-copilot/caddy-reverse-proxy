@@ -51,9 +51,9 @@
 		}
 	}
 
-	handle_path /file/* {
-		rewrite * /file{uri}		
-		# proxy all requests for /file/* to the backend, configure this variable in the service settings
+	handle_path /files/* {
+		rewrite * /files{uri}		
+		# proxy all requests for /files/* to the backend, configure this variable in the service settings
 		reverse_proxy {$BACKEND_HOST} {			
 			transport http {
 				dial_timeout 15s

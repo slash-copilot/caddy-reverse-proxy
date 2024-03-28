@@ -51,6 +51,16 @@
 		}
 	}
 
+	handle_path /file/* {
+		rewrite * /file{uri}		
+		# proxy all requests for /file/* to the backend, configure this variable in the service settings
+		reverse_proxy {$BACKEND_HOST} {			
+			transport http {
+				dial_timeout 15s
+			}						
+		}
+	}
+
 	# the handle_path directive will strip /console/api/ from the path before proxying
 	# this is needed if your backend's api routes don't start with /api/
 	# change paths as needed
